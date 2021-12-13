@@ -1,13 +1,21 @@
 ﻿@using KinoAfisha.Models;
 @model Format
 
-    <fieldset>
-        <legend>Пожалуйста, заполните необходимые поля</legend>
-        @using (Html.BeginForm("Create", "Formats", FormMethod.Post))
-        {
+@{
+    Layout = null;
+    var controllerName = "Formats";
+    var actionName = "Create";
+    var enctype = "application/x-www-form-urlencoded";
+}
 
-            @Html.EditorForModel()
-            <input type="submit" value="Сохранить" class = "btn btn-outline-success"/>
-            @Html.ActionLink("Отменить", "Index", "Formats", null, new { @class = "btn btn-danger" })
-        }
-    </fieldset>
+<h3>Формат</h3>
+
+
+
+@using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @enctype = enctype }))
+{
+    @Html.EditorForModel()
+
+    <button class="btn btn-primary" onclick="Post('@controllerName','@actionName', '@enctype')">Сохранить</button>
+    @Html.ActionLink("Отменить", "Index", controllerName, null, new { @class = "btn btn-danger" })
+}

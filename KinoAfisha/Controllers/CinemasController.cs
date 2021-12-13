@@ -32,11 +32,15 @@ namespace KinoAfisha.Controllers
         [HttpPost]
         public ActionResult Create(Cinema model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
-   
             var db = new KinoAfishaContext();
 
+            if (!ModelState.IsValid)
+            {
+                var cinemas = db.Cinemas.ToList();
+                ViewBag.Create = model;
+                return View("Index", cinemas);
+
+            }
             db.Cinemas.Add(model);
             db.SaveChanges();
 
@@ -80,6 +84,12 @@ namespace KinoAfisha.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            if (!ModelState.IsValid)
+            {
+                var cinemas = db.Cinemas.ToList();
+                ViewBag.Create = model;
+                return View("Index", cinemas);
+            }
             MappingFilm(model, cinema, db);
 
             db.Entry(cinema).State = EntityState.Modified;

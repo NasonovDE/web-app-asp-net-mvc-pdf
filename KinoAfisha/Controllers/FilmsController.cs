@@ -61,7 +61,14 @@ namespace KinoAfisha.Controllers
 
             if (model.Key != _key)
                 ModelState.AddModelError("Key", "Ключ для создания/изменения записи указан не верно");
+            
+            if (!ModelState.IsValid)
+            {
+                var films = db.Films.ToList();
+                ViewBag.Create = model;
+                return View("Index", films);
 
+            }
 
 
             db.Films.Add(model);
@@ -108,9 +115,17 @@ namespace KinoAfisha.Controllers
             if (model.Key != _key)
                 ModelState.AddModelError("Key", "Ключ для создания/изменения записи указан не верно");
 
+            
             if (!ModelState.IsValid)
                 return View(model);
 
+            if (!ModelState.IsValid)
+            {
+                var films = db.Films.ToList();
+                ViewBag.Create = model;
+                return View("Index", films);
+
+            }
             MappingFilm(model, film, db);
 
             db.Entry(film).State = EntityState.Modified;

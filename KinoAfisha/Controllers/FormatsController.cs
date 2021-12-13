@@ -30,11 +30,17 @@ namespace KinoAfisha.Controllers
         [HttpPost]
         public ActionResult Create(Format model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
-
+       
+    
             var db = new KinoAfishaContext();
 
+            if (!ModelState.IsValid)
+            {
+                var formats = db.Formats.ToList();
+                ViewBag.Create = model;
+                return View("Index", formats);
+
+            }
             db.Formats.Add(model);
             db.SaveChanges();
 
@@ -77,6 +83,12 @@ namespace KinoAfisha.Controllers
 
             if (!ModelState.IsValid)
                 return View(model);
+            if (!ModelState.IsValid)
+            {
+                var formats = db.Formats.ToList();
+                ViewBag.Create = model;
+                return View("Index", format);
+            }
 
             MappingNationality(model, format);
 

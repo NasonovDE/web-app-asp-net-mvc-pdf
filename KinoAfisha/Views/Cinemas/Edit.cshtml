@@ -1,15 +1,20 @@
 ﻿@using KinoAfisha.Models;
 @model Cinema
 
-    <fieldset>
-        <legend>Пожалуйста, заполните необходимые поля</legend>
+@{
+    Layout = null;
+    var controllerName = "Cinemas";
+    var actionName = "Edit";
+    var enctype = "multipart/form-data";
+}
 
-        @using (Html.BeginForm("Edit", "Cinemas", FormMethod.Post))
-        {
 
-            @Html.ValidationSummary();
-            @Html.EditorForModel()
-            <input type="submit" value="Сохранить" class = "btn btn-outline-success"/>
-            @Html.ActionLink("Отменить", "Index", "Cinemas", null, new { @class = "btn btn-danger" })
-        }
-    </fieldset>
+<h3>Кинотеатр</h3>
+
+@using (Html.BeginForm(actionName, controllerName, FormMethod.Post, new { @enctype = enctype }))
+{
+    @Html.EditorForModel()
+
+    <button class="btn btn-primary" onclick="Post('@controllerName','@actionName')">Сохранить</button>
+    @Html.ActionLink("Отменить", "Index", controllerName, null, new { @class = "btn btn-danger" })
+}

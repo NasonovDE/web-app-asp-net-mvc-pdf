@@ -153,6 +153,14 @@
     <Compile Include="Migrations\202111302015251_Init4.designer.cs">
       <DependentUpon>202111302015251_Init4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111302059142_Init5.cs" />
+    <Compile Include="Migrations\202111302059142_Init5.designer.cs">
+      <DependentUpon>202111302059142_Init5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112130051469_Init6.cs" />
+    <Compile Include="Migrations\202112130051469_Init6.designer.cs">
+      <DependentUpon>202112130051469_Init6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attributes\TargetPropertyAttribute.cs" />
     <Compile Include="Models\Enum\QRcode.cs" />
@@ -217,6 +225,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <None Include="Scripts\jquery-3.6.0-vsdoc.js" />
@@ -286,6 +295,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111302015251_Init4.resx">
       <DependentUpon>202111302015251_Init4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111302059142_Init5.resx">
+      <DependentUpon>202111302059142_Init5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112130051469_Init6.resx">
+      <DependentUpon>202112130051469_Init6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

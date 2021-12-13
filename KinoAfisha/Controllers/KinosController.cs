@@ -48,6 +48,13 @@ namespace KinoAfisha.Controllers
                 model.Cinemas = cinema;
             }
 
+            if (!ModelState.IsValid)
+            {
+                var kinos = db.Kinos.ToList();
+                ViewBag.Create = model;
+                return View("Index", kinos);
+
+            }
 
 
             db.Kinos.Add(model);
@@ -95,6 +102,13 @@ namespace KinoAfisha.Controllers
             if (kino == null)
             {
                 ModelState.AddModelError("Id", "кино не найдено");
+            }
+            if (!ModelState.IsValid)
+            {
+                var kinos = db.Kinos.ToList();
+                ViewBag.Create = model;
+                return View("Index", kinos);
+
             }
             if (!ModelState.IsValid)
                 return View(model);
