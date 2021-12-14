@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 using KinoAfisha.Models;
 using WebAppAspNetMvcCodeFirst.Extensions;
+using Rotativa;
 
 
 
@@ -228,6 +229,24 @@ namespace KinoAfisha.Controllers
                 return RedirectPermanent("/Films/Index");
 
             return View(kino);
+        }
+
+        [HttpGet]
+        public ActionResult Pdf(int id)
+        {
+
+
+
+            var db = new KinoAfishaContext();
+            var film = db.Films.FirstOrDefault(x => x.Id == id);
+            if (film == null)
+                return RedirectPermanent("/Films/Index");
+
+            var pdf = new ViewAsPdf("Pdf", film);
+            var data = pdf.BuildFile(this.ControllerContext);
+
+
+            return File(new MemoryStream(data), "application/pdf", "document.pdf");
         }
     }
 
